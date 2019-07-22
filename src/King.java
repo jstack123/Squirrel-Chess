@@ -7,8 +7,8 @@ public class King extends Piece {
 	
 	public King(Position pos, Board b, boolean isWhite, Rook rook1, Rook rook2) {
 		super(pos, b, isWhite);
-		this.rook1 = rook1;
-		this.rook2 = rook2;
+		this.rook1 = rook1;//white
+		this.rook2 = rook2;//black
 	}
 
 	@Override
@@ -30,8 +30,10 @@ public class King extends Piece {
 			ret.add(new Position(pos.getRow(), pos.getCol() + 1));
 		if (pos.getCol() - 1 >= 0)
 			ret.add(new Position(pos.getRow(), pos.getCol() - 1));
-		if (isWhite && b.whiteCanCastle()) {
-			
+		if (isWhite && b.whiteCanCastle()) { //TODO when no pieces are btwn rook and king
+			ret.add(new Position(pos.getRow(), pos.getCol() - 2));
+			//rook1.move(new Position(pos.getRow(), 3)); moves rook when castling but moves
+														//immediately when user clicks on king
 		}
 		return removeInvalidMoves(ret);
 	}
