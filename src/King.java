@@ -11,6 +11,15 @@ public class King extends Piece {
 		this.rook2 = rook2;//black
 	}
 
+	public boolean whiteAbleToCastle() {
+		if(b.getPieceAtPos(new Position(pos.getRow(), pos.getCol() - 1))==null && 
+			b.getPieceAtPos(new Position(pos.getRow(), pos.getCol() - 2))==null && 
+			b.getPieceAtPos(new Position(pos.getRow(), pos.getCol() - 3)) == null) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	@Override
 	public ArrayList<Position> getMoveSet() {
 		ArrayList<Position> ret = new ArrayList<Position>();
@@ -30,10 +39,20 @@ public class King extends Piece {
 			ret.add(new Position(pos.getRow(), pos.getCol() + 1));
 		if (pos.getCol() - 1 >= 0)
 			ret.add(new Position(pos.getRow(), pos.getCol() - 1));
-		if (isWhite && b.whiteCanCastle()) { //TODO when no pieces are btwn rook and king
+		if (isWhite && whiteAbleToCastle()) { 
+			boolean bool = false;
 			ret.add(new Position(pos.getRow(), pos.getCol() - 2));
-			//rook1.move(new Position(pos.getRow(), 3)); moves rook when castling but moves
-														//immediately when user clicks on king
+//			while(bool== false) {
+			//while(b.getPieceAtPos(new Position(pos.getRow(), pos.getCol()))!= null) {//while loop doesnt allow user to click on anything
+				if(b.getPieceAtPos(new Position(pos.getRow(), pos.getCol() - 2))!= null) { 
+					bool = true;
+					rook1.move(new Position(pos.getRow(), 3)); //doesnt move yet
+				}
+	//	}
+//			}
+			/*moves rook when castling but moves
+			immediately when user clicks on king
+			*/
 		}
 		return removeInvalidMoves(ret);
 	}
