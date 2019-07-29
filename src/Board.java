@@ -14,12 +14,15 @@ public class Board extends JPanel {
 	private boolean whiteCastle;
 	private boolean blackCastle;
 	private boolean whiteTurn;
+	private Rook rook1;
+	private Rook rook2;
+	private King king;
 
 	public Board(Chess game) {
 		this.game = game;
 		pieces = new ArrayList<Piece>();
 		initBoard();
-		initPieces();
+		initPieces();	
 	}
 
 	public void highlightMoves(Piece p) {
@@ -55,7 +58,7 @@ public class Board extends JPanel {
 		setLayout(new GridLayout(8, 8));
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
-				squares[i][j] = new Square(this, new Position(i, j));
+				squares[i][j] = new Square(this, new Position(i, j),king);
 				squares[i][j].setOpaque(true);
 				squares[i][j].setBorderPainted(false);
 				if ((i + j) % 2 == 1)
@@ -181,6 +184,7 @@ public class Board extends JPanel {
 	
 	public void nextTurn() {
 		whiteTurn = !whiteTurn;
+		
 	}
 	
 	public boolean getWhiteTurn() {
