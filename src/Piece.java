@@ -35,10 +35,10 @@ public abstract class Piece {
 		b.unhighlightMoves();
 		b.setSelectedPiece(null);
 		b.nextTurn();
-		if (isWhite)
-			JOptionPane.showMessageDialog(null, "Black's turn.");
-		else
-			JOptionPane.showMessageDialog(null, "White's turn.");
+	//	if (isWhite)
+			//JOptionPane.showMessageDialog(null, "Black's turn.");
+	//	else
+			//JOptionPane.showMessageDialog(null, "White's turn.");
 	}
 
 	public void remove() {
