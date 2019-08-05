@@ -25,6 +25,10 @@ public class Board extends JPanel {
 		initPieces();	
 	}
 
+	public King getKing() {
+		return king;
+	}
+	
 	public void highlightMoves(Piece p) {
 		squares[p.getPos().getRow()][p.getPos().getCol()].setBackground(Color.GREEN);
 		for (Position pos : p.getMoveSet()) {
@@ -58,7 +62,7 @@ public class Board extends JPanel {
 		setLayout(new GridLayout(8, 8));
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
-				squares[i][j] = new Square(this, new Position(i, j),king);
+				squares[i][j] = new Square(this, new Position(i, j));
 				squares[i][j].setOpaque(true);
 				squares[i][j].setBorderPainted(false);
 				if ((i + j) % 2 == 1)
@@ -78,21 +82,26 @@ public class Board extends JPanel {
 		blackCastle = true;
 	}
 
+	Rook whiteR1;
+	Rook whiteR2;
+	Rook blackR1;
+	Rook blackR2;
+	
 	private void initPieces() {
-		Rook r1 = new Rook(new Position(0, 0), this, false);
-		Rook r2 = new Rook(new Position(0, 7), this, false);
-		Rook r3 = new Rook(new Position(7, 0), this, true);
-		Rook r4 = new Rook(new Position(7, 7), this, true);
+		 blackR1 = new Rook(new Position(0, 0), this, false);
+		 blackR2 = new Rook(new Position(0, 7), this, false);
+		 whiteR1 = new Rook(new Position(7, 0), this, true);
+		 whiteR2 = new Rook(new Position(7, 7), this, true);
 		
 		pieces = new ArrayList<Piece>();
-		pieces.add(r1);
-		pieces.add(r2);
-		pieces.add(r3);
-		pieces.add(r4);
+		pieces.add(whiteR1);
+		pieces.add(whiteR2);
+		pieces.add(blackR1);
+		pieces.add(blackR2);
 		pieces.add(new Knight(new Position(0, 1), this, false));
 		pieces.add(new Bishop(new Position(0, 2), this, false));
 		pieces.add(new Queen(new Position(0, 3), this, false));
-		pieces.add(new King(new Position(0, 4), this, false, r1, r2));
+		pieces.add(new King(new Position(0, 4), this, false, whiteR1, whiteR2));
 		pieces.add(new Bishop(new Position(0, 5), this, false));
 		pieces.add(new Knight(new Position(0, 6), this, false));
 		pieces.add(new Pawn(new Position(1, 0), this, false));
@@ -114,7 +123,7 @@ public class Board extends JPanel {
 		pieces.add(new Knight(new Position(7, 1), this, true));
 		pieces.add(new Bishop(new Position(7, 2), this, true));
 		pieces.add(new Queen(new Position(7, 3), this, true));
-		pieces.add(new King(new Position(7, 4), this, true, r3, r4));
+		pieces.add(new King(new Position(7, 4), this, true, blackR1, blackR2));
 		pieces.add(new Bishop(new Position(7, 5), this, true));
 		pieces.add(new Knight(new Position(7, 6), this, true));
 		
@@ -124,6 +133,19 @@ public class Board extends JPanel {
 		updateText();
 	}
 
+	public Rook getWhiteR1() {
+		return whiteR1;
+	}
+	public Rook getWhiteR2() {
+		return whiteR2;
+	}
+	public Rook getBlackR1() {
+		return blackR1;
+	}
+	public Rook getBlackR2() {
+		return blackR2;
+	}
+	
 	public Piece getPieceAtPos(Position pos) {
 		for (Piece p : pieces) {
 			if (p.getPos().equals(pos))
