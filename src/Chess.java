@@ -17,6 +17,7 @@ public class Chess {
 		frame.setResizable(false);
 		frame.add(board);
 		frame.setVisible(true);
+		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
 		gameInfo.setSize(200, 200);
 		JPanel textPanel = new JPanel();
 		JTextArea text = new JTextArea();

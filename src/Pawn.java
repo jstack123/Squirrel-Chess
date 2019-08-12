@@ -1,3 +1,4 @@
+																								
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -8,7 +9,7 @@ public class Pawn extends Piece {
 
 	public Pawn(Position pos, Board b, boolean isWhite) {
 		super(pos, b, isWhite);
-		hasMoved = false;
+		hasMoved = false;  
 	}
 
 	@Override
@@ -24,10 +25,10 @@ public class Pawn extends Piece {
 					ret.add(new Position(pos.getRow() - 1, pos.getCol()));
 			} else {
 				if(b.getPieceAtPos(new Position(pos.getRow()-1,pos.getCol())) == null) {
-					ret.add(new Position(pos.getRow() - 1, pos.getCol()));
+					ret.add(new Position(pos.getRow() - 1, pos.getCol()));  
 				}
 				if ((b.getPieceAtPos(new Position(pos.getRow() - 1, pos.getCol() + 1)) != null) && pos.getCol() != 7)
-					ret.add(new Position(pos.getRow() - 1, pos.getCol() + 1));
+					ret.add(new Position(pos.getRow() - 1, pos.getCol() + 1));										
 				if ((b.getPieceAtPos(new Position(pos.getRow() - 1, pos.getCol() - 1)) != null) && pos.getCol() != 0)
 					ret.add(new Position(pos.getRow() - 1, pos.getCol() - 1));
 				if(b.getPieceAtPos(new Position(pos.getRow()-1,pos.getCol())) == null) {
